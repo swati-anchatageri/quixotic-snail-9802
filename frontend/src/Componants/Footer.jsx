@@ -24,7 +24,7 @@ export default function Footer() {
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}>
-      <Container as={Stack} maxW={"6xl"} py={10}>
+      <Container as={Stack} maxW={"6xl"} py={5}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
           <Stack align={"flex-start"}>
             <ListHeader>Product</ListHeader>
@@ -109,7 +109,7 @@ export default function Footer() {
           </Stack>
         </SimpleGrid>
       </Container>
-      <Box py={10}>
+      <Box py={2}>
         <Flex
           align={"center"}
           _before={{
@@ -126,10 +126,9 @@ export default function Footer() {
             flexGrow: 1,
             ml: 8,
           }}>
-         
           <Image src={logo} alt="Logo" width={"10rem"} />
         </Flex>
-        <Text pt={6} fontSize={"sm"} textAlign={"center"}>
+        <Text pt={2} fontSize={"sm"} textAlign={"center"}>
           © 2023 Home Sweeter. All rights reserved
         </Text>
       </Box>

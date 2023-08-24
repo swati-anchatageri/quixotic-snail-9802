@@ -21,7 +21,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-
+import logo from "../images/Logo1.png";
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -57,6 +57,8 @@ export default function WithSubnavigation() {
             color={useColorModeValue("gray.800", "white")}>
             <Image
               src="https://s.zillowstatic.com/pfs/static/z-logo-default.svg"
+              // src={logo}
+              // width={"10rem"}
               alt="logo"
             />
           </Text>
