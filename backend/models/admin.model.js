@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-const adminuserSchema=mongoose.Schema({
+const adminSchema=mongoose.Schema({
     name:String,
     email:String,
     phone:Number,
@@ -10,8 +10,8 @@ const adminuserSchema=mongoose.Schema({
     versionKey:false
 })
 
-const AdminUserModel=mongoose.model("adminuser", adminuserSchema)
+const AdminModel=mongoose.model("adminuser", adminSchema)
 
 module.exports={
-    AdminUserModel
+    AdminModel
 }
