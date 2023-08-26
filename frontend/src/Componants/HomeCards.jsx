@@ -16,14 +16,14 @@ function StatsCard(props) {
   return (
     <Center py={6}>
       <Box
+        boxShadow={"lg"}
         maxW={"445px"}
         w={"full"}
-        boxShadow={"2xl"}
         rounded={"md"}
         p={6}
         overflow={"hidden"}
         transition={"transform 0.3s"} // Added transition
-        _hover={{ transform: "scale(1.10)" }} // Added hover effect
+        _hover={{ transform: "scale(1.10)", boxShadow: "xl" }} // Added hover effect
       >
         <Box
           h={"210px"}
@@ -85,7 +85,7 @@ export default function BasicStatistics() {
         />
         <StatsCard
           image={
-            "https://www.zillowstatic.com/bedrock/app/uploads/sites/5/2022/07/Buy_a_home.webp"
+            "https://www.zillowstatic.com/bedrock/app/uploads/sites/5/2022/08/Rent_a_home.webp"
           }
           buttonText={"Find rentals"}
           heading={"Rent a home"}

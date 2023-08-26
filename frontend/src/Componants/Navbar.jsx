@@ -21,6 +21,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -55,12 +56,12 @@ export default function WithSubnavigation() {
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}>
-            <Image
-              src="https://s.zillowstatic.com/pfs/static/z-logo-default.svg"
-              // src={logo}
-              // width={"10rem"}
-              alt="logo"
-            />
+            <Link to="/home" as={Box}>
+              <Image
+                src="https://s.zillowstatic.com/pfs/static/z-logo-default.svg"
+                alt="logo"
+              />
+            </Link>
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -73,27 +74,24 @@ export default function WithSubnavigation() {
           justify={"flex-end"}
           direction={"row"}
           spacing={6}>
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}>
-            Sign In
-          </Button>
-          <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"blue.600"}
-            href={"#"}
-            _hover={{
-              bg: "blue.400",
-            }}>
-            Sign Up
-          </Button>
+          <Link to="/login" as={Box}>
+            <Button fontSize={"sm"} fontWeight={400} variant={"link"}>
+              Sign In
+            </Button>
+          </Link>
+          <Link to="/register" as={Box}>
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"blue.600"}
+              _hover={{
+                bg: "blue.400",
+              }}>
+              Sign Up
+            </Button>
+          </Link>
         </Stack>
       </Flex>
 
