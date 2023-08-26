@@ -8,6 +8,7 @@ import {
   Tag,
   useColorModeValue,
   Image,
+  Center,
 } from "@chakra-ui/react";
 import logo from "../images/Logo1.png";
 
@@ -132,6 +133,12 @@ export default function Footer() {
           © 2023 Home Sweeter. All rights reserved
         </Text>
       </Box>
+      <Center>
+        <Image
+          src="https://s.zillowstatic.com/pfs/static/footer-art.svg"
+          alt="footerimg"
+        />
+      </Center>
     </Box>
   );
 }

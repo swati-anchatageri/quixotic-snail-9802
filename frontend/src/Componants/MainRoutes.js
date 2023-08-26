@@ -5,6 +5,8 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Rregister";
 import NotFound from "./pageNotFound";
 
+import HomePage from "../Pages/HomePage";
+
 const MainRoutes = () => {
   return (
     <>
@@ -12,6 +14,7 @@ const MainRoutes = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/404" element={<NotFound />} />
       </Routes>
       <Footer />
