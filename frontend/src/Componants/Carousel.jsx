@@ -19,12 +19,12 @@ export default function Carousel() {
   return (
     <Box
       position={"relative"}
-      height={"600px"}
+      height={"30rem"}
       width={"full"}
       overflow={"hidden"}>
       <Slider>
         <Box
-          height={"6xl"}
+          height={"4xl"}
           position="relative"
           backgroundPosition="center"
           backgroundSize="cover"

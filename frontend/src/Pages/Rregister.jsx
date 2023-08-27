@@ -12,34 +12,43 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  Select,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import axios from "axios";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = () => {
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
     const data = {
-      name: firstName,
-      lname: lastName,
-      email: email,
-      pass: password,
+      name,
+      phone,
+      gender,
+      email,
+      password,
     };
-    console.log(data);
+    try {
+      const response = await axios.post(
+        "https://homesweeter.onrender.com/users/register",
+        data
+      );
+      console.log(response.data);
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
-    <Flex
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
-      >
+    <Flex minH={"100vh"} align={"center"} justify={"center"}>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"3xl"} textAlign={"center"}>
@@ -61,24 +70,35 @@ export default function Register() {
                   <FormLabel>Name</FormLabel>
                   <Input
                     type="text"
-                    value={firstName}
+                    value={name}
                     onChange={(e) => {
-                      setFirstName(e.target.value);
+                      setName(e.target.value);
                     }}
                   />
                 </FormControl>
               </Box>
               <Box>
-                <FormControl id="lastName">
-                  <FormLabel>Last Name</FormLabel>
-                  <Input
-                    type="text"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
+                <FormControl id="gender">
+                  <FormLabel>Gender</FormLabel>
+                  <Select
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="others">Others</option>
+                  </Select>
                 </FormControl>
               </Box>
             </HStack>
+            <FormControl id="lastName">
+              <FormLabel>Phone</FormLabel>
+              <Input
+                type="number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </FormControl>
             <FormControl id="email" isRequired>
               <FormLabel>Email</FormLabel>
               <Input
