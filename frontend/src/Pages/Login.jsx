@@ -11,18 +11,41 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
+  const savedToken = localStorage.getItem("ZillowToken");
+  const savedRefreshToken = localStorage.getItem("Rtoken");
+
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const handleLogin = () => {
+  const [ password, setPass ] = useState("");
+  
+  const handleLogin = async () => {
     const data = {
-      pass,
+      password,
       email,
     };
-    console.log(data);
+
+    try {
+      const response = await axios.post(
+        "https://homesweeter.onrender.com/users/login",
+        data
+      );
+      console.log(response.data);
+      const { token, refreshToken } = response.data;
+
+      localStorage.setItem("ZillowToken", token);
+      localStorage.setItem("Rtoken", refreshToken);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  if (savedToken && savedRefreshToken) {
+   
+    return <Navigate to="/" replace={true} />;
+  }
   return (
     <Stack p={10} minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
@@ -40,7 +63,7 @@ export default function Login() {
             <FormLabel>Password</FormLabel>
             <Input
               type="password"
-              value={pass}
+              value={password}
               onChange={(e) => setPass(e.target.value)}
             />
           </FormControl>

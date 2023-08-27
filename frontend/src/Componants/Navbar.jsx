@@ -22,6 +22,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
+// import logo from "../images/Logo1.png";
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -59,7 +60,9 @@ export default function WithSubnavigation() {
             <Link to="/home" as={Box}>
               <Image
                 src="https://s.zillowstatic.com/pfs/static/z-logo-default.svg"
+                // src={logo}
                 alt="logo"
+                width="5rem"
               />
             </Link>
           </Text>
