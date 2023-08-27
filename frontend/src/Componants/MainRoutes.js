@@ -6,12 +6,17 @@ import Register from "../Pages/Rregister";
 import NotFound from "./pageNotFound";
 
 import HomePage from "../Pages/HomePage";
+
+import { Buyproduct } from "../Pages/BuyProduct/Buyproduct";
+import SingleProduct from "../Pages/SingleProduct/SingleProduct";
+
 import { AdminSignin } from "../admin/adminSignin";
 import AdminDashboard from "../admin/adminDashboard";
 import AdminProperies from "../admin/AdminProperties";
 import UserList from "../admin/adminUsers";
 import AdminList from "../admin/Adminlist";
 import AddProperties from "../admin/addProperties";
+
 
 const MainRoutes = () => {
   return (
@@ -21,6 +26,9 @@ const MainRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/buyproduct" element={<Buyproduct />} />
+        <Route path="/buyproduct/:id" element={<SingleProduct/>} />
+
         <Route path="/404" element={<NotFound />} />
         <Route path="/adminsignin" element={<AdminSignin/>}/>
         <Route path="/admindashboard" element={<AdminDashboard/>}/>
