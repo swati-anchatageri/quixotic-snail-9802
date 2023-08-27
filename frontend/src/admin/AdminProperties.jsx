@@ -1,11 +1,11 @@
 import React from "react"
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container,Heading } from "@chakra-ui/react";
 import PropertyList from "./propertyList";
 const AdminProperties = () => {
   return (
     <>
       <Box bgColor={"#CAEDFF"}>
-        <Container
+        <Container p={5}
           maxW={{
             base: "100%",
             sm: "90%",
@@ -13,6 +13,7 @@ const AdminProperties = () => {
           }}
         >
           <Box mb={5}>
+          <Heading as="h2" size="xl" color={"blackAlpha.900"}>Properties..</Heading>
             <PropertyList />
           </Box>
         </Container>

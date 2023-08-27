@@ -12,12 +12,17 @@ import {
   Heading,
   Box,
 } from "@chakra-ui/react";
-
+import axios from "axios";
 const AdminList = () => {
   const [isBlocked, setIsBlocked] = useState(false);
   const [admin, setAdmin] = useState([])
   useEffect(() => {
-   
+    axios.get(`https://homesweeter.onrender.com/admins`)
+    .then((res)=>{
+        setAdmin(res.data)
+    }).catch((err)=>{
+        console.log(err)
+    })
   }, []);
 
   const toggleButton = () => {
@@ -37,7 +42,6 @@ const AdminList = () => {
           fontSize={{ base: "12", md: "sm", xl: "md" }}
         >
           <Table variant="striped" bgColor={"white"}>
-            <TableCaption color=" #1e7816">LIST OF ADMINS</TableCaption>
             <Thead>
               <Tr fontSize={{ base: "12", md: "sm", xl: "md" }}>
                 <Th color=" #1e7816">NAME</Th>

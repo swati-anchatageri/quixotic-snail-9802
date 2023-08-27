@@ -37,6 +37,7 @@ export default function Login() {
 
       localStorage.setItem("ZillowToken", token);
       localStorage.setItem("Rtoken", refreshToken);
+      Navigate("/")
     } catch (error) {
       console.error(error);
     }
