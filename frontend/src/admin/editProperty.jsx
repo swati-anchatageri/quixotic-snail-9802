@@ -1,108 +1,90 @@
-import React, { useState } from "react";
 import {
   Button,
   Container,
   FormControl,
   FormLabel,
   Input,
+  Select,
   Heading,
   useToast,
-  Select,
   Textarea,
   Box,
 } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-// import { useDispatch } from "react-redux";
-const initialState = {
-  image: "",
-  owner: "",
-  details: "",
-  building: "",
-  carpet: "",
-  status: "",
-  furnishing: "",
-  facing: "",
-  overlooking: "",
-  ownership: "",
-  bathroom: "",
-  balcony: "",
-  description: "",
-  total_price: "",
-  latitude: "",
-  longitude: "",
-};
-const AddProperties = () => {
-  const [formState, setFormState] = useState(initialState);
-  //   const dispatch = useDispatch();
+
+const EditProperty = () => {
+  const { id } = useParams();
+  const [item, setItem] = useState({});
   const toast = useToast();
-  const statuses = ["success", "error", "warning", "info"];
   const positions = ["top"];
-  //!HANDLE CHANGE FUNCTION
+  const navigate = useNavigate();
+  useEffect(() => {
+    // Fetch the property data using Axios
+    axios
+      .get(`https://homesweeter.onrender.com/property/${id}`)
+      .then((response) => {
+        setItem(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching property data:", error);
+      });
+  }, [id]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormState({ ...formState, [name]: value });
+    setItem((prev) => {
+      return { ...prev, [name]: value };
+    });
   };
-  //! HANDLE SUBMIT FUNCTION
+  console.log(id, item);
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (
-      formState.image === "" ||
-      formState.building === "" ||
-      formState.ownership === "" ||
-      formState.facing === ""
-    ) {
-      toast({
-        title: "Please Add The Information",
-        position: positions,
-        status: statuses[2],
-        isClosable: true,
-      });
-    } else {
-      axios
-        .post("https://homesweeter.onrender.com/property/add", formState) // Update the URL accordingly
-        .then(() => {
-          setFormState(initialState);
-          toast({
-            title: "Property Added Successfully",
-            position: positions,
-            status: statuses[0],
-            isClosable: true,
-          });
-        })
-        .catch((error) => {
-          console.error("Error adding property:", error);
-          toast({
-            title: "An error occurred",
-            description: "Failed to add the property.",
-            position: positions,
-            isClosable: true,
-            status: "error",
-          });
+    // Patch the property data using Axios
+    axios
+      .patch(`https://homesweeter.onrender.com/property/update/${id}`, item)
+      .then(() => {
+        toast({
+          title: "Property Edit Successful",
+          position: positions,
+          isClosable: true,
+          status: "success",
         });
-    }
+        navigate("/admindashboard");
+      })
+      .catch((error) => {
+        console.error("Error editing property:", error);
+        toast({
+          title: "An error occurred",
+          description: "Failed to edit the property.",
+          position: positions,
+          isClosable: true,
+          status: "error",
+        });
+      });
   };
   return (
     <>
       <Box bgColor={"#CAEDFF"}>
         <Container
-          maxW="container.md"
+          maxW="8xl"
           border="1px"
-          borderColor="#1e7816"
+          borderColor="#1450A3"
           bgColor={"white"}
           p={"20px"}
           mt={"30px"}
           mb={5}
         >
           <FormControl>
-            <Heading mb={"10px"} color={"#1e7816"} textAlign={"center"}>
-              Add Property 
+            <Heading mb={"10px"} color={"#1450A3"} textAlign={"center"}>
+              Property ID :- {id}
             </Heading>
             <FormLabel m={"10px"}>Image URL</FormLabel>
             <Input
               border={"1px solid #1e7816 "}
               type="text"
-              value={formState.image}
+              value={item.image}
               placeholder="Image"
               size="md"
               name="image"
@@ -113,7 +95,7 @@ const AddProperties = () => {
             <Input
               border={"1px solid #1e7816 "}
               type="text"
-              value={formState.owner}
+              value={item.owner}
               placeholder="Owner Name"
               size="md"
               name="owner"
@@ -124,7 +106,7 @@ const AddProperties = () => {
             <Input
               border={"1px solid #1e7816 "}
               type="text"
-              value={formState.details}
+              value={item.details}
               placeholder="Details"
               size="md"
               name="details"
@@ -135,7 +117,7 @@ const AddProperties = () => {
             <Input
               border={"1px solid #1e7816 "}
               type="text"
-              value={formState.building}
+              value={item.building}
               placeholder="Building Name"
               size="md"
               name="building"
@@ -145,8 +127,8 @@ const AddProperties = () => {
             <FormLabel m={"10px"}>Carpet Area</FormLabel>
             <Input
               border={"1px solid #1e7816 "}
-              type="number"
-              value={formState.carpet}
+              type="text"
+              value={item.carpet}
               placeholder="Carpet Area"
               size="md"
               name="carpet"
@@ -157,7 +139,7 @@ const AddProperties = () => {
             <Input
               border={"1px solid #1e7816 "}
               type="text"
-              value={formState.status}
+              value={item.status}
               placeholder="Status"
               size="md"
               name="status"
@@ -214,7 +196,7 @@ const AddProperties = () => {
             <Input
               border={"1px solid #1e7816 "}
               type="number"
-              value={formState.bathroom}
+              value={item.bathroom}
               placeholder="Bathroom"
               size="md"
               name="bathroom"
@@ -225,7 +207,7 @@ const AddProperties = () => {
             <Input
               border={"1px solid #1e7816 "}
               type="number"
-              value={formState.balcony}
+              value={item.balcony}
               placeholder="Balcony"
               size="md"
               name="balcony"
@@ -236,7 +218,7 @@ const AddProperties = () => {
             <Input
               border={"1px solid #1e7816 "}
               type="text"
-              value={formState.total_price}
+              value={item.total_price}
               placeholder="Total Price"
               size="md"
               name="total_price"
@@ -247,7 +229,7 @@ const AddProperties = () => {
             <Input
               border={"1px solid #1e7816 "}
               type="number"
-              value={formState.latitude}
+              value={item.latitude}
               placeholder="Latitude"
               size="md"
               name="latitude"
@@ -258,7 +240,7 @@ const AddProperties = () => {
             <Input
               border={"1px solid #1e7816 "}
               type="number"
-              value={formState.longitude}
+              value={item.longitude}
               placeholder="Longitude"
               size="md"
               name="longitude"
@@ -268,7 +250,7 @@ const AddProperties = () => {
             <FormLabel m={"10px"}>Description</FormLabel>
             <Textarea
               border={"1px solid #1e7816 "}
-              value={formState.description}
+              value={item.description}
               placeholder="Description"
               name="description"
               onChange={handleChange}
@@ -286,7 +268,7 @@ const AddProperties = () => {
               m={"auto"}
               mt={"20px"}
             >
-              Add Product
+              Edit Property
             </Button>
           </FormControl>
         </Container>
@@ -295,4 +277,4 @@ const AddProperties = () => {
   );
 };
 
-export default AddProperties;
+export default EditProperty;

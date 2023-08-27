@@ -16,6 +16,7 @@ import AdminProperies from "../admin/AdminProperties";
 import UserList from "../admin/adminUsers";
 import AdminList from "../admin/Adminlist";
 import AddProperties from "../admin/addProperties";
+import EditProperty from "../admin/editProperty";
 
 
 const MainRoutes = () => {
@@ -36,6 +37,7 @@ const MainRoutes = () => {
         <Route path="/userlist" element={<UserList/>}/>
         <Route path="/adminlist" element={<AdminList/>}/>
         <Route path="/addproperty" element={<AddProperties/>}/>
+        <Route path="/editproperty/:id" element={<EditProperty/>}/>
       </Routes>
       <Footer />
     </>

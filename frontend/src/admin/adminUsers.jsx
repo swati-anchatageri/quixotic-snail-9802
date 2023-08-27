@@ -12,12 +12,17 @@ import {
   Heading,
   Box,
 } from "@chakra-ui/react";
-
+import axios from "axios";
 const UserList = () => {
   const [blockedUsers, setBlockedUsers] = useState([]);
   const [user,setUser]=useState([]) 
   useEffect(() => {
-    
+    axios.get(`https://homesweeter.onrender.com/users`)
+    .then((res)=>{
+        setUser(res.data)
+    }).catch((err)=>{
+        console.log(err)
+    })
   }, []);
 
   const toggleButton = (userId) => {
@@ -49,7 +54,7 @@ const UserList = () => {
           fontSize={{ base: "12", md: "sm", xl: "md" }}
         >
           <Table variant="striped" bgColor={"white"}>
-            <TableCaption color=" #1e7816">LIST OF USERS</TableCaption>
+            {/* <TableCaption color=" #1e7816">LIST OF USERS</TableCaption> */}
             <Thead>
               <Tr fontSize={{ base: "12", md: "sm", xl: "md" }}>
                 <Th color=" #1e7816">NAME</Th>

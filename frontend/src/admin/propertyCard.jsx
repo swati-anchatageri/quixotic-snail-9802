@@ -67,7 +67,7 @@ const PropertyCard = ({
         <CardFooter justifyContent={"space-between"} justifyItems={"center"}>
           <Button mr="20px" color={"#1e7816"}>
             {" "}
-            <Link to={`/editProperty/${_id}`}>Edit</Link>
+            <Link to={`/editproperty/${_id}`}>Edit</Link>
           </Button>
           <Button color={"#1e7816"} onClick={handleClick}>
             Delete
