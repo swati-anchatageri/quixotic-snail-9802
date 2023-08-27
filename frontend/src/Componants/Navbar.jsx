@@ -22,6 +22,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
+import { Buyproduct } from "../Pages/BuyProduct/Buyproduct";
 // import logo from "../images/Logo1.png";
 
 export default function WithSubnavigation() {
@@ -262,12 +263,12 @@ const NAV_ITEMS = [
       {
         label: "Open Houses",
 
-        href: "#",
+        href: "buyproduct",
       },
       {
         label: "New Homes",
-
-        href: "#",
+        href: "buyproduct",
+        
       },
       {
         label: "Recently Sold",

@@ -6,6 +6,8 @@ import Register from "../Pages/Rregister";
 import NotFound from "./pageNotFound";
 
 import HomePage from "../Pages/HomePage";
+import { Buyproduct } from "../Pages/BuyProduct/Buyproduct";
+import SingleProduct from "../Pages/SingleProduct/SingleProduct";
 
 const MainRoutes = () => {
   return (
@@ -15,6 +17,9 @@ const MainRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/buyproduct" element={<Buyproduct />} />
+        <Route path="/buyproduct/:id" element={<SingleProduct/>} />
+
         <Route path="/404" element={<NotFound />} />
       </Routes>
       <Footer />
