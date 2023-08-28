@@ -11,13 +11,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Login() {
   const savedToken = localStorage.getItem("ZillowToken");
   const savedRefreshToken = localStorage.getItem("Rtoken");
-
+ const navigte = useNavigate()
   const [email, setEmail] = useState("");
   const [ password, setPass ] = useState("");
   
@@ -37,7 +37,7 @@ export default function Login() {
 
       localStorage.setItem("ZillowToken", token);
       localStorage.setItem("Rtoken", refreshToken);
-      Navigate("/")
+      navigte("/")
     } catch (error) {
       console.error(error);
     }
