@@ -18,7 +18,6 @@ import AdminList from "../admin/Adminlist";
 import AddProperties from "../admin/addProperties";
 import EditProperty from "../admin/editProperty";
 
-
 const MainRoutes = () => {
   return (
     <>
@@ -28,16 +27,16 @@ const MainRoutes = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/buyproduct" element={<Buyproduct />} />
-        <Route path="/buyproduct/:id" element={<SingleProduct/>} />
+        <Route path="/buyproduct/:id" element={<SingleProduct />} />
 
-        <Route path="/404" element={<NotFound />} />
-        <Route path="/adminsignin" element={<AdminSignin/>}/>
-        <Route path="/admindashboard" element={<AdminDashboard/>}/>
-        <Route path="/adminproperties" element={<AdminProperies/>}/>
-        <Route path="/userlist" element={<UserList/>}/>
-        <Route path="/adminlist" element={<AdminList/>}/>
-        <Route path="/addproperty" element={<AddProperties/>}/>
-        <Route path="/editproperty/:id" element={<EditProperty/>}/>
+        <Route path="*" element={<NotFound />} />
+        <Route path="/adminsignin" element={<AdminSignin />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/adminproperties" element={<AdminProperies />} />
+        <Route path="/userlist" element={<UserList />} />
+        <Route path="/adminlist" element={<AdminList />} />
+        <Route path="/addproperty" element={<AddProperties />} />
+        <Route path="/editproperty/:id" element={<EditProperty />} />
       </Routes>
       <Footer />
     </>
