@@ -58,7 +58,7 @@ export default function WithSubnavigation() {
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}>
-            <Link to="/home" as={Box}>
+            <Link to="/" as={Box}>
               <Image
                 src="https://s.zillowstatic.com/pfs/static/z-logo-default.svg"
                 // src={logo}
